@@ -4,6 +4,8 @@ import net.milkbowl.vault.economy.Economy;
 
 /**
  * 
+ * Vault economy wrapper
+ * 
  * @author AzubuSan
  * 
  */
