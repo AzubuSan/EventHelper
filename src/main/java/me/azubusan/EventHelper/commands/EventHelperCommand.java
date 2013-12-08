@@ -65,7 +65,7 @@ public class EventHelperCommand implements CommandExecutor {
 					+ "Sorry, you dont have permission to use this command.");
 			return true;
 		}
-		// Remove the subCommand from the args list andf pass along the rest
+		// Remove the subCommand from the args list and pass along the rest
 		if(!eventHelperCommand.onCommand(sender, cmd, label, Arrays.copyOfRange(args, 1, args.length))) {
 			// A subCommand returning a false should display usage information for that subCommand
 			sender.sendMessage(eventHelperCommand.getUsage());

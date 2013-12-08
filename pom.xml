@@ -80,5 +80,21 @@
             </plugin>
         </plugins>
     </build>
-    <description>A plugin  made to make running events easier.</description>
+    <description>A plugin made to make running events easier</description>
+    <name>EventHelper</name>
+    <url>https://github.com/AzubuSan/EventHelper</url>
+    <organization>
+    	<name>Medievallords Of Minecraft</name>
+    	<url>http://ml-mc.com</url>
+    </organization>
+    <issueManagement>
+    	<system>GitHub</system>
+    	<url>https://github.com/AzubuSan/EventHelper/issues</url>
+    </issueManagement>
+    <scm>
+    	<url>https://github.com/AzubuSan/EventHelper</url>
+    	<connection>scm:git:git://github.com/AzubuSan/EventHelper.git</connection>
+    	<developerConnection>scm:git:git@github.com:AzubuSan/EventHelper.git</developerConnection>
+    	<tag>master</tag>
+    </scm>
 </project>

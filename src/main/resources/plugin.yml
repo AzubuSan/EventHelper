@@ -10,13 +10,13 @@ commands:
         description: The base command for all Event Helper commands
         permissions: eh.commands.eventhelper
         usage: /eventhelper [set]
-        aliases: [eh,eventh,ehelper,evnthlpr]
+        aliases: [eh,eventh,ehelper]
     sudo:
         description: Force another user to run a specified command
         usage: /sudo [player] [command]
         aliases: [su,so]
         permissions: eh.commands.sudo
-        
+
 permissions:
     eh.commands.eventhelper:
         description: Allows use of all Event Helper commands
@@ -24,9 +24,9 @@ permissions:
         children:
             eh.commands.eventhelper.set: true
             eh.commands.eventhelper.get: true
-   eh.commands.eventhelper.set:
+    eh.commands.eventhelper.set:
        description: Allows setting of event parameters
        default: op
-   eh.commands.eventhelper.get:
+    eh.commands.eventhelper.get:
        description: Allows getting of event parameters
        default: op

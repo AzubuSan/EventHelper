@@ -17,29 +17,30 @@ import org.bukkit.scheduler.BukkitRunnable;
  */
 
 public class EventHelper extends JavaPlugin {
-	
+
 	private EconomyWrapper economy = null;
 
 	@Override
 	public void onEnable() {
-		
-		if (getServer().getPluginManager().getPlugin("Worldedit") == null) {
+
+		if (getServer().getPluginManager().getPlugin("WorldEdit") == null) {
 			this.getLogger().info("Worldedit not found! Plugin cannot load!");
 			getServer().getPluginManager().disablePlugin(this);
+		} else {
+
+			saveDefaultConfig();
+
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					setupEconomy();
+				}
+			}.runTaskLater(this, 20);
+
+			// Register Commands from external Classes.
+			getCommand("eventhelper").setExecutor(new EventHelperCommand(this));
+			getCommand("sudo").setExecutor(new SudoCommand(this));
 		}
-		
-		saveDefaultConfig();
-
-		new BukkitRunnable() {
-			@Override
-			public void run() {
-				setupEconomy();
-			}
-		}.runTaskLater(this, 20);
-
-		// Register Commands from external Classes.
-		getCommand("eventhelper").setExecutor(new EventHelperCommand(this));
-		getCommand("sudo").setExecutor(new SudoCommand(this));
 	}
 
 	private void setupEconomy() {
