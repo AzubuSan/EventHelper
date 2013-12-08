@@ -86,7 +86,7 @@ public class setCommand implements CommandHandler {
 
 	@Override
 	public String getUsage() { // Displays usage info if return false;
-		return "/eventhelper set [param] - Sets event parameters";
+		return "/eh set [param] - Sets event parameters";
 	}
 
 	@Override
