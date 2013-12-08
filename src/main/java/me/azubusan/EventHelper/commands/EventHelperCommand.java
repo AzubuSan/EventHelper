@@ -38,14 +38,13 @@ public class EventHelperCommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label,
 			String[] args) {
-		// Entering a command without parameters is seen as a request for
-		// command help
-		// so lets show that.
+		// It is assumed that entering the menu command without parameters is an
+		// attempt to get information about it. So let's give it to them.
 		if (args.length == 0) {
 			for (CommandHandler eventHelperCommand : subCommands.values()) {
 				String permission = eventHelperCommand.getPermission();
 				if (permission != null && sender.hasPermission(permission)) {
-					sender.sendMessage(eventHelperCommand.getUsage());
+					sender.sendMessage(ChatColor.GOLD + eventHelperCommand.getUsage());
 				}
 			}
 			return true;
@@ -66,8 +65,10 @@ public class EventHelperCommand implements CommandExecutor {
 			return true;
 		}
 		// Remove the subCommand from the args list and pass along the rest
-		if(!eventHelperCommand.onCommand(sender, cmd, label, Arrays.copyOfRange(args, 1, args.length))) {
-			// A subCommand returning a false should display usage information for that subCommand
+		if (!eventHelperCommand.onCommand(sender, cmd, label,
+				Arrays.copyOfRange(args, 1, args.length))) {
+			// A subCommand returning a false should display usage information
+			// for that subCommand
 			sender.sendMessage(eventHelperCommand.getUsage());
 		}
 		return true;

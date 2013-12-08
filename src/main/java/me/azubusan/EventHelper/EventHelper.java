@@ -2,6 +2,7 @@ package me.azubusan.EventHelper;
 
 import me.azubusan.EventHelper.commands.EventHelperCommand;
 import me.azubusan.EventHelper.commands.SudoCommand;
+import me.azubusan.EventHelper.listeners.DevListener;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -37,6 +38,9 @@ public class EventHelper extends JavaPlugin {
 				}
 			}.runTaskLater(this, 20);
 
+			// Register External Listeners
+			new DevListener().registerEvents(this);
+			
 			// Register Commands from external Classes.
 			getCommand("eventhelper").setExecutor(new EventHelperCommand(this));
 			getCommand("sudo").setExecutor(new SudoCommand(this));

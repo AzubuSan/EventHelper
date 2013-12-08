@@ -36,7 +36,7 @@ public class setCommand implements CommandHandler {
 		// help
 		// So lets show them that
 		if (args.length == 0) {
-			sender.sendMessage(ChatColor.AQUA + "Event Helper Help Version " + ChatColor.GRAY + "[" + ChatColor.RED + plugin.getDescription().getVersion() + ChatColor.GRAY + "] " + ChatColor.AQUA + "by AzubuSan" );
+			sender.sendMessage(ChatColor.AQUA + "Event Helper Help Version " + ChatColor.GRAY + "[" + ChatColor.RED + plugin.getDescription().getVersion() + ChatColor.GRAY + "] " + ChatColor.DARK_PURPLE + "by AzubuSan" );
 			sender.sendMessage(ChatColor.GOLD + "/eventhelper set eventarea " + ChatColor.DARK_PURPLE + "|" + ChatColor.RED + " Sets Event Area with worldedit wand");
 			sender.sendMessage(ChatColor.GOLD + "/eventhelper set rewards " + ChatColor.DARK_PURPLE + "|" + ChatColor.RED + " Sets event end rewards");
 			sender.sendMessage(ChatColor.GOLD + "/eventhelper set mobspawns " + ChatColor.DARK_PURPLE + "|" + ChatColor.RED + " Set the mob spawnpoints");
