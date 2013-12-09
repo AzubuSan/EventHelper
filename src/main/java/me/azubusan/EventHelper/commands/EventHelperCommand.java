@@ -7,6 +7,8 @@ import java.util.Map;
 import me.azubusan.EventHelper.EventHelper;
 import me.azubusan.EventHelper.commands.event.getCommand;
 import me.azubusan.EventHelper.commands.event.setCommand;
+import me.azubusan.EventHelper.commands.misc.ReloadConfigCommand;
+import me.azubusan.EventHelper.commands.misc.SudoCommand;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -27,11 +29,13 @@ public class EventHelperCommand implements CommandExecutor {
 	 * Subcommands of the base /EventHelper command
 	 * 
 	 */
-	private Map<String, CommandHandler> subCommands = new HashMap<>();
+	private Map<String, IEventHelperCommand> subCommands = new HashMap<>();
 
 	public EventHelperCommand(EventHelper plugin) {
 		subCommands.put("set", new setCommand(plugin));
 		subCommands.put("get", new getCommand(plugin));
+		subCommands.put("sudo", new SudoCommand(plugin));
+		subCommands.put("reload", new ReloadConfigCommand(plugin));
 
 	}
 
@@ -41,7 +45,7 @@ public class EventHelperCommand implements CommandExecutor {
 		// It is assumed that entering the menu command without parameters is an
 		// attempt to get information about it. So let's give it to them.
 		if (args.length == 0) {
-			for (CommandHandler eventHelperCommand : subCommands.values()) {
+			for (IEventHelperCommand eventHelperCommand : subCommands.values()) {
 				String permission = eventHelperCommand.getPermission();
 				if (permission != null && sender.hasPermission(permission)) {
 					sender.sendMessage(ChatColor.GOLD + eventHelperCommand.getUsage());
@@ -51,7 +55,7 @@ public class EventHelperCommand implements CommandExecutor {
 		}
 
 		String subCommandName = args[0];
-		CommandHandler eventHelperCommand = subCommands.get(subCommandName
+		IEventHelperCommand eventHelperCommand = subCommands.get(subCommandName
 				.toLowerCase());
 		if (eventHelperCommand == null) {
 			return false; // Sender mistyped command or command was an invalid

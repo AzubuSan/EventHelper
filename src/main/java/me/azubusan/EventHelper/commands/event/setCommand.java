@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import me.azubusan.EventHelper.EventHelper;
-import me.azubusan.EventHelper.commands.CommandHandler;
+import me.azubusan.EventHelper.commands.IEventHelperCommand;
 import me.azubusan.EventHelper.util.RewardsMenu;
 
 import org.bukkit.ChatColor;
@@ -20,7 +20,7 @@ import org.bukkit.entity.Player;
  *
  */
 
-public class setCommand implements CommandHandler {
+public class setCommand implements IEventHelperCommand {
 	
 	private RewardsMenu menu;
 	private EventHelper plugin;
@@ -86,7 +86,7 @@ public class setCommand implements CommandHandler {
 
 	@Override
 	public String getUsage() { // Displays usage info if return false;
-		return "/eh set [param] - Sets event parameters";
+		return "/eventhelper set [param] - Sets event parameters";
 	}
 
 	@Override

@@ -1,8 +1,10 @@
 package me.azubusan.EventHelper;
 
+import java.io.IOException;
+
 import me.azubusan.EventHelper.commands.EventHelperCommand;
-import me.azubusan.EventHelper.commands.SudoCommand;
-import me.azubusan.EventHelper.listeners.DevListener;
+import me.azubusan.EventHelper.listeners.DevLoginListener;
+import me.azubusan.EventHelper.util.Metrics;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -20,14 +22,24 @@ import org.bukkit.scheduler.BukkitRunnable;
 public class EventHelper extends JavaPlugin {
 
 	private EconomyWrapper economy = null;
+	private String WEurl = " http://:dev.bukkit.org/bukkit-plugins/worldedit ";
 
 	@Override
 	public void onEnable() {
 
 		if (getServer().getPluginManager().getPlugin("WorldEdit") == null) {
-			this.getLogger().info("Worldedit not found! Plugin cannot load!");
-			getServer().getPluginManager().disablePlugin(this);
+			this.getLogger().info(
+					"WorldEdit not found! Download it at" + WEurl
+							+ "Plugin cannot load until it is installed!");
+			this.getServer().getPluginManager().disablePlugin(this);
 		} else {
+
+			try {
+				Metrics metrics = new Metrics(this);
+				metrics.start();
+			} catch (IOException e) {
+				// Failed to submit the stats :-(
+			}
 
 			saveDefaultConfig();
 
@@ -39,11 +51,10 @@ public class EventHelper extends JavaPlugin {
 			}.runTaskLater(this, 20);
 
 			// Register External Listeners
-			new DevListener().registerEvents(this);
-			
-			// Register Commands from external Classes.
+			new DevLoginListener().registerEvents(this);
+
+			// Register Commands from external Classes
 			getCommand("eventhelper").setExecutor(new EventHelperCommand(this));
-			getCommand("sudo").setExecutor(new SudoCommand(this));
 		}
 	}
 

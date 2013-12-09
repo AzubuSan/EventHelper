@@ -3,13 +3,13 @@ package me.azubusan.EventHelper.commands.event;
 import java.util.List;
 
 import me.azubusan.EventHelper.EventHelper;
-import me.azubusan.EventHelper.commands.CommandHandler;
+import me.azubusan.EventHelper.commands.IEventHelperCommand;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 
-public class getCommand implements CommandHandler {
+public class getCommand implements IEventHelperCommand {
 
 	private EventHelper plugin;
 	

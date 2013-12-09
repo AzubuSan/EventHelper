@@ -1,5 +1,5 @@
 name: ${project.name}
-main: ${project.groupId}.${project.artifactId}.${project.name}
+main: ${project.groupId}.${project.artifactId}.EventHelper
 version: ${project.version}
 description: ${project.description}
 softdepend: [Vault]
@@ -11,22 +11,25 @@ commands:
         permissions: eh.commands.eventhelper
         usage: /eventhelper [set]
         aliases: [eh,eventh,ehelper]
-    sudo:
-        description: Force another user to run a specified command
-        usage: /sudo [player] [command]
-        aliases: [su,so]
-        permissions: eh.commands.sudo
 
 permissions:
-    eh.commands.eventhelper:
+    eh.commands.eventhelper.*:
         description: Allows use of all Event Helper commands
         default: op
         children:
-            eh.commands.eventhelper.set: true
-            eh.commands.eventhelper.get: true
-    eh.commands.eventhelper.set:
+            eh.commands.set: true
+            eh.commands.get: true
+            eh.commands.sudo: true
+            eh.commands.reload: true
+    eh.commands.set:
        description: Allows setting of event parameters
        default: op
-    eh.commands.eventhelper.get:
+    eh.commands.get:
        description: Allows getting of event parameters
+       default: op
+    eh.commands.sudo:
+       description: Allows sudoing of another user
+       default: op
+    eh.commands.reload:
+       description: Allows reloading of the config file
        default: op
